@@ -1,0 +1,19 @@
+\section{Formatting}
+\label{sec:Formatting}
+
+We begin by outlining the problems with formatting in Word, even by a trained practitioner who knows how to use Word properly. Throughout this section I will assume that an inconsistent document makes us look unprofessional and that fixing issues around inconsistent or poor formatting is trivial nonsense that is a waste of our time and our client's money.
+
+First of all, it is easy to break the template in Word. Many times I have had section numbering disappear even though the numbering is part of the section header style which was not updated. This was not fixed by reapplying the style. There are many such instances where the styles do not apply properly. Once the template is defined the user should not need to put any extra work into ensuring that it is followed - the software should handle this for us.
+
+Often I find Word just does weird things that no one understands and there is no good fix. For example, I have had tables where the boldness of text would not save and the typical solution to a problem like this is to recreate the whole table from scratch of copy and paste everything into a new document (\href{https://learn.microsoft.com/en-us/answers/questions/5092571/tables-in-ms-word-are-changing-when-saved-and-re-o}{Link to relevant post on Microsoft Helpdesk}).
+
+In \LaTeX, all formatting rules for elements such as section and subsection styles, spacing, font sizes, headers and footers, et cetera are defined at the start of the document. The template applies globally across the document\footnote{It is possible to deviate from the template locally if you really want to but typically this is awkward to do. This is because you are trying to defy the compiler which almost always means you are attempting to commit crimes against typesetting and should not be doing whatever you are trying to do.} which makes documents look consistent and only the type of formatting needs to be given. To tell the compiler you are creating new section or subsection, one would write \Verb_\section{Example Section Name}_ or \Verb_\section{Example Subsection Name}_ respectively and to tell it to format as a bullet point list, the following code is used.
+
+\begin{Verbatim}
+\begin{itemize}
+	\item Example of the first item
+	\item Example of the second item
+\end{itemize}
+\end{Verbatim}
+
+This method separates the formatting from the content, meaning no time wasted on formatting and consistent documents. \LaTeX also gives a lot more control than Word; as a simple example it is possible to adjust how much weight it should give towards avoiding widows.

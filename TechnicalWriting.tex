@@ -1,0 +1,41 @@
+\section{Technical Writing}
+\label{sec:TechnicalWriting}
+
+One of the main powers of \LaTeX\ is the ability to format mathematics. In equation~\eqref{eqn:ClosureOfSO2} below is a simple example showing closure of the $SO(2)$ group, something that would be extremely painful to make in Word but is simple in \LaTeX.
+\begin{subequations}
+\begin{align}
+	R(\theta)R(\phi) &= 
+	\left( \begin{array}{cc}
+		\cos\theta & -\sin\theta \\
+		\sin\theta & \cos\theta
+	\end{array} \right)
+	\left( \begin{array}{cc}
+		\cos\phi & -\sin\phi \\
+		\sin\phi & \cos\phi
+	\end{array} \right)\label{eqn:ClosureOfSO2a}  \\
+	&= \left( \begin{array}{cc}
+		\cos\theta\cos\phi - \sin\theta\sin\phi & -\cos\theta\sin\phi -\sin\theta\cos\phi \\
+		\sin\theta\cos\phi + \cos\theta\sin\phi & -\sin\theta\sin\phi + \cos\theta\cos\phi
+	\end{array} \right)\label{eqn:ClosureOfSO2b}  \\
+	&= \left( \begin{array}{cc}
+		\cos(\theta + \phi) & -\sin(\theta + \phi) \\
+		\sin(\theta + \phi) & \cos(\theta + \phi)
+	\end{array} \right)\label{eqn:ClosureOfSO2c}  \\
+	&= R(\theta + \phi)\label{eqn:ClosureOfSO2d}
+\end{align}
+\label{eqn:ClosureOfSO2}
+\end{subequations}
+We note the following that are impossible, awkward, or very manual to do in Word:
+
+\begin{itemize}
+	\item The equations are numbered automatically and we do not need to position them ourselves
+	\item The equations are aligned on the equals sign - I did not need to add spaces to do this
+	\item The whole equation or individual parts such as equation~\eqref{eqn:ClosureOfSO2b} can be cross-referenced easily
+	\item Much more complicated configurations can be created, such as equations in two columns
+\end{itemize}
+
+Images are inserted by giving a path to the image. This means when the images are updated the document also updates when it is recompiled. Copying by reference means there is one version of the truth which is one of the reasons why copying by value in situations like this is poor practice. I have wasted a lot of time reinserting images into documents because this is not possible in Word.
+
+Word and other Microsoft Office Suite products are very poor at handling vector graphics. As an engineering consultancy, we feature a lot of graphs in our documents, yet we are forced to rasterise them which lowers their quality. The only option I have found that Word is happy with are Enhanced Metafiles (EMF), a format of Microsoft's creation with many problems\footnote{EMF files do not support transparency. They also do not or antialiasing so all text looks odd as well}. On the other hand, \LaTeX\ handles bitmaps and vector graphics easily.
+
+Going further than this, plots and figures can even be created inside \LaTeX\ itself, although this is typically for more advanced users. This means even the font in plot titles and axis labels can be consistent with and across the rest of the document. I have not found any other way of achieving this conveniently.
