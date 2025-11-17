@@ -1,18 +1,35 @@
 \documentclass[hidelinks, 11 pt]{article}
 
-\usepackage[a4paper, top=25.4mm, bottom=25.4mm, left=19.1mm, right=19.1mm, footskip=8mm]{geometry}
+\usepackage[a4paper, top=12.7mm, bottom=25.4mm, left=19.1mm, right=19.1mm, footskip=8mm]{geometry}
 \usepackage[skip=7pt]{parskip}
 \usepackage[list=true, listformat=simple]{subcaption}
 \usepackage{graphicx}
-\usepackage{xcolor}
 \usepackage{float}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{listings}
 
-\fvset{tabsize=4}
-\interfootnotelinepenalty=10000
+\fvset{tabsize=4} % Set tabsize in Verbatim environments
+\interfootnotelinepenalty=10000 % Force footnotes not to split over pages
+\newcommand{\myhline}{\hline\noalign{\vskip 2pt}} % Space after hline
+\renewcommand{\arraystretch}{1.2} % Increase spacing between rows of tables
+
+% Format listings environments
+\lstset{
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	keepspaces=true,
+	breaklines=true
+}
+
+% Format links
+\hypersetup{
+	colorlinks=false,
+	linkbordercolor=black
+}
 
 \begin{document}
 
@@ -21,5 +38,9 @@
 \input{TechnicalWriting.tex}
 \input{EaseOfUse.tex}
 \input{Conclusion.tex}
+
+\appendix
+
+\input{FailuresOfWord.tex}
 
 \end{document}

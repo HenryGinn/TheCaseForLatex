@@ -1,2 +1,57 @@
 \section{Ease of Use}
 \label{sec:EaseOfUse}
+
+The cost of these improvements is that \LaTeX\ is less simple to use than Word, although I would argue the gap is not that large, especially for basic word processing. Table~\ref{tab:Difficulty} summarises how complex certain tasks are to do in \LaTeX\ with examples given below. The general principle of simple aims being simple to execute and complex aims being complex to execute holds, as long as it is inline with good typesetting principles, for example sideways text might need some research.
+
+\begin{table}[H]
+	\caption{The experience and training needs to do certain tasks in \LaTeX.}
+	\label{tab:Difficulty}
+	\centering
+	\begin{tabular}{cp{110 mm}}
+		\myhline
+		Task & \multicolumn{1}{c}{Difficulty}  \\
+		\myhline
+		Typing in paragraphs & As easy as in notepad.  \\
+		Creating headings & Use the \Verb_\section{}_, \Verb_subsection{}_, and \Verb_subsubsection{}_ commands instead of applying a style.  \\
+		Cross-referencing & Use \Verb_\label{label name}_ in the relevant location and then \Verb_\ref{label name}_ to reference that location.  \\
+		Figures and tables & Requires some code which can be copy and pasted. For basic cases the formats are easy to extend from examples.  \\
+		Single equations & Nearly as easy as Word, for example \Verb_\alpha_ for $\alpha$ instead of pressing a button from a menu.  \\
+		Complex equations & Will need some practice and around half an hour of training.  \\
+		Making a template & Intermediate level of difficulty, but only needs to be done once per project. Regular users do not need to be at this level.  \\
+		Making diagrams & Intermediate to advanced, but unnecessary for what we do at WSP and can be replaced by a figure produced in other software anyway.  \\
+		\myhline
+	\end{tabular}
+\end{table}
+
+Inserting images is likely the most difficult task most employees would need to do. The below code produces two subfigures side by side, although could easily be modified to have three. I posit that almost all WSP employees would be able to figure out that they would need to add another subfigure block and change 0.49 to 0.33.
+
+\begin{Verbatim}
+\begin{figure}[H]
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\textwidth]{example-image-a}
+		\caption{Example A}
+		\label{Example Subfigure 1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\includegraphics[width=\textwidth]{example-image-b}
+		\caption{Example B}
+		\label{Example Subfigure 2}
+	\end{subfigure}
+	\caption[Short caption that appears in list of figures]{Overall figure caption}
+	\label{Overall Figure Caption}
+\end{figure}
+\end{Verbatim}
+
+\LaTeX\ has been around for around 40 years and is the standard in most technical fields in academia. Common packages are well-documented and there is a large repository of questions and answers on the dedicated \TeX\ Stack Exchange. When an error occurs, a benefit of \LaTeX\ over Word is that the issue is almost always due to the user doing something wrong rather than strange behaviour of \LaTeX. This means the user has control over the problem and is able to fix it.
+
+
+
+
+
+
+
+
+
+
+
