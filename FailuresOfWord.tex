@@ -1,4 +1,37 @@
 \section{Failures of Word}
+\label{sec:FailuresOfWord}
+
+In this section I want to give some examples of times where the use of Word has caused me significant grief which would never have been a problem when using a combination of \LaTeX\ and git. Here I want to highlight how much time and energy is wasted by using Word. The section is concluded by a list of annoying behaviours of Word.
+
+\subsection{Attaching pdf Documents in Appendices}
+
+Several times I have had to attach spreadsheets as an appendix to a pdf as part of a deliverable\footnote{Personally I believe this is not best practice and we should be sending the native file, but we will ignore that.}. Below is the process we use to get the page numbers at the bottom of the page correct and the links and page numbers in the table of contents to be correct:
+
+\begin{enumerate}
+	\item Go to the first sheet of the spreadsheet being included, change the ``start at page number" setting to match the position it belongs in the document.
+	\item Repeat this for the next sheets of the spreadsheet, ensuring that the page number adds the length of the previous sheets that have been converted to pdf.
+	\item After the corresponding appendix title page, add blank pages equal to the length of the pdf being included.
+	\item Repeat for all spreadsheets being included (or just step 3 for existing pdfs).
+	\item After exporting Word to pdf, remove the blank pages in a pdf editor and add in the pages of the pdfs to be included.
+\end{enumerate}
+
+There are several problems with this approach. Firstly, this is an error-prone process. The chances of pages being added in the wrong order is high and there are many opportunities to end up with incorrect page numbers and table of contents links anyway. Secondly, if any changes to the document are made that change the length of the document, then usually the whole process will need to be redone. Finally, this process can take a long time. I once complained to a colleague how I had ended up wasting a whole day converting a document to a pdf and they told me they had done the same thing.
+
+Let us consider how this works in \LaTeX. All sheets are converted to pdf without page numbers and there is a simple one-line command that tells the compiler to include the pdf with page numbers. All links and page numbers are done for you and are updated automatically in response to any changes. In addition to this, these page numbers (and any other header or footer information) will follow the document template given and would not need to be recreated in Excel.
+
+\subsection{Version Control}
+
+Recently I had a Sharepoint synced folder that stopped syncing and I did not notice for a month. This meant that several documents I was working on had diverged from the main version and I would need to merge any changes I had made into the main document. To be fully confident I had not missed anything, I needed to copy both documents into notepad++, remove the clause numbers to stop superfluous difference being detected, and then use a tool that identified differences between two texts. After this I had to check all formatting was correct because this method would not have been picked up formatting differences.
+
+I ended up wasting a whole day on this task. This was something that git was designed for, as described in section~\ref{sec:VersionControl}, and would have taken a few minutes per document.
+
+\subsection{Changing Template}
+
+Recently a colleague had used a WSP template for some work that subsequently decided should go in a document for the project, meaning changing to the project template. No matter what type of paste special I used, the styles of the project template would not apply and I needed to go through and apply the styles by hand. This was not too arduous for a 12-page document, but there were many tables that needed formatting. This should have been a case of applying the table header style to the header and the table body style to the body, but that did not work. Instead the font size, font type, font colour, font alignment, cell borders, cell alignment, and paragraph alignment had to be set manually, for both the header and the body\footnote{This template uses a different font style and size for the header than the rest of the document. This would be awkward to do in \LaTeX\ because it is terrible practice.}.
+
+I spent an afternoon fixing this. Using \LaTeX\ this would have been solved by a single copy and paste because the formatting is handled elsewhere. Worse, it turned out that my colleague had a more up-to-date version of the document stored locally, so I had to carefully scan for differences between the tables and update them manually. If using \LaTeX\ then I could have copy and pasted again.
+
+\subsection{Assorted Complaints}
 
 In case it is not clear how unstable, buggy, and annoying Word is, I have included a few oddities and frustrations of Word below:
 
@@ -8,9 +41,10 @@ In case it is not clear how unstable, buggy, and annoying Word is, I have includ
 	\item Sometimes invisible, unselectable, and undeletable formatting characters can appear in your document that break your formatting. The only fix for this is manoeuvering the character somewhere it does no harm, or copying everything into a new document.
 	\item Clicking the bullet point button can change the font size and font style.
 	\item Space after paragraph should be used to ensure space between paragraphs, but the space is still added for the last paragraph on the page. As the space is attached to the paragraph, it puts the line on the next page even if that line would fit above. To avoid widows, space after paragraph needs to be manually handled.
-	\item The gap between ``Figure" or ``Table" and the number in the caption is not a non-breaking space by default. When cross-referencing this can result in the number being on a new line.
-	\item Vertically centred text in a cell of a table does not appear vertically centred, even if space before and after paragraph and margins are symmetrical.
+	\item The gap between ``Figure" or ``Table" and the number in the caption is not a non-breaking space by default. This can result in the number being on a new line when cross-referencing.
+	\item Vertically centred text in a cell of a table does not appear vertically centred, even if space before and after paragraph are the same and margins are symmetrical.
 	\item Page breaks take up space. This means if the last line that fits on the page is long then the page break mark is moved to the next page, meaning a blank page. This means needing to manually handle the page break.
 	\item Changing the width of a column in a table where the last cell highlighted is merged will only change the width of the first row of the merged cell. This means needing to change the width of those cells separately and remerging afterwards.
 	\item The number of words that fit on a line depends on their justification - this should only affect the spacing between words (unless rivers are avoided, which Word cannot do).
+	\item The default behaviour of images is ``keep with next", yet if two images will not fit on the same page together then word will put them on separate pages with an automatic page break on the preceeding page, even if there was room for the first image\footnote{If two images are meant to be understood together then they should be subfigures of a single figure object.}.
 \end{itemize}

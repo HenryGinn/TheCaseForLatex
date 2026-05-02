@@ -12,10 +12,15 @@
 \usepackage{pgfplots}
 \usepackage{listings}
 
+\pgfplotsset{compat=1.18}
+\newsavebox{\imagebox}
+\usepackage[export]{adjustbox}
+
 \fvset{tabsize=4} % Set tabsize in Verbatim environments
 \interfootnotelinepenalty=10000 % Force footnotes not to split over pages
 \newcommand{\myhline}{\hline\noalign{\vskip 2pt}} % Space after hline
 \renewcommand{\arraystretch}{1.2} % Increase spacing between rows of tables
+\linepenalty=500
 
 % Format listings environments
 \lstset{
@@ -33,14 +38,22 @@
 
 \begin{document}
 
-\input{Introduction.tex}
-\input{Formatting.tex}
-\input{TechnicalWriting.tex}
-\input{EaseOfUse.tex}
+\begin{center}
+	\huge The Case for \LaTeX\  \\
+	\vspace{5mm}
+	\large Henry Ginn  \\
+	\vspace{3 mm}
+	\large \today
+\end{center}
+
+\tableofcontents
+
+\input{Introduction.tex}\newpage
+\input{Formatting.tex}\newpage
+\input{TechnicalWriting.tex}\newpage
+\input{VersionControl.tex}\newpage
+\input{EaseOfUse.tex}\newpage
+\input{FailuresOfWord.tex}\newpage
 \input{Conclusion.tex}
-
-\appendix
-
-\input{FailuresOfWord.tex}
 
 \end{document}
