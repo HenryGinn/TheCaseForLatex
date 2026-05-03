@@ -1,0 +1,71 @@
+\documentclass[hidelinks, 11 pt]{article}
+
+\usepackage[a4paper, top=12.7mm, bottom=25.4mm, left=19.1mm, right=19.1mm, footskip=8mm]{geometry}
+\usepackage[skip=7pt]{parskip}
+\usepackage[list=true, listformat=simple]{subcaption}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{listings}
+\usepackage{lstautogobble}
+\usepackage[export]{adjustbox}
+
+\pgfplotsset{compat=1.18}
+\newsavebox{\imagebox}
+
+\fvset{tabsize=4} % Set tabsize in Verbatim environments
+\newcommand{\myhline}{\hline\noalign{\vskip 2pt}} % Space after hline
+\renewcommand{\arraystretch}{1.2} % Increase spacing between rows of tables
+
+% Penalties
+\interfootnotelinepenalty=10000 % Force footnotes not to split over pages
+\linepenalty=500 % Avoid runts
+\hyphenpenalty=1000 % Avoid splitting words across lines by hyphenating
+\clubpenalty=10000 % Avoid widows
+
+% Format listings environments
+\lstset{
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	keepspaces=true,
+	breaklines=true,
+	autogobble=true,
+	tabsize=4
+}
+
+% Format links
+\hypersetup{
+	colorlinks=false,
+	linkbordercolor=black
+}
+
+\begin{document}
+
+\begin{center}
+	\huge The Case for \LaTeX\  \\
+	\vspace{5mm}
+	\large Henry Ginn  \\
+	\vspace{3 mm}
+	\large \today
+\end{center}
+
+\tableofcontents
+
+\newpage
+
+\input{Introduction.tex}
+\lstinputlisting{Introduction.tex}
+\newpage
+
+\input{Formatting.tex}\newpage
+\input{TechnicalWriting.tex}\newpage
+\input{VersionControl.tex}\newpage
+\input{EaseOfUse.tex}\newpage
+\input{FailuresOfWord.tex}\newpage
+\input{Conclusion.tex}
+
+\end{document}
