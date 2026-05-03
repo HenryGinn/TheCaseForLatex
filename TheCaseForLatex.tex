@@ -11,23 +11,30 @@
 \usepackage{hyperref}
 \usepackage{pgfplots}
 \usepackage{listings}
+\usepackage{lstautogobble}
+\usepackage[export]{adjustbox}
 
 \pgfplotsset{compat=1.18}
 \newsavebox{\imagebox}
-\usepackage[export]{adjustbox}
 
 \fvset{tabsize=4} % Set tabsize in Verbatim environments
-\interfootnotelinepenalty=10000 % Force footnotes not to split over pages
 \newcommand{\myhline}{\hline\noalign{\vskip 2pt}} % Space after hline
 \renewcommand{\arraystretch}{1.2} % Increase spacing between rows of tables
-\linepenalty=500
+
+% Penalties
+\interfootnotelinepenalty=10000 % Force footnotes not to split over pages
+\linepenalty=500 % Avoid runts
+\hyphenpenalty=1000 % Avoid splitting words across lines by hyphenating
+\clubpenalty=10000 % Avoid widows
 
 % Format listings environments
 \lstset{
 	basicstyle=\ttfamily,
 	columns=fullflexible,
 	keepspaces=true,
-	breaklines=true
+	breaklines=true,
+	autogobble=true,
+	tabsize=4
 }
 
 % Format links
@@ -48,7 +55,12 @@
 
 \tableofcontents
 
-\input{Introduction.tex}\newpage
+\newpage
+
+\input{Introduction.tex}
+\lstinputlisting{Introduction.tex}
+\newpage
+
 \input{Formatting.tex}\newpage
 \input{TechnicalWriting.tex}\newpage
 \input{VersionControl.tex}\newpage

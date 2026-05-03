@@ -5,63 +5,97 @@
 % Comparing git diff with current Word-based methods.
 % Security and how you can self-host a git server.
 % Log of changes - who made what change and when.
-% Blobs are hashed. Can use signed commits to confirm what time commits were made.
 % https://github.com/HenryGinn/Essays/tree/main/TheCaseForLaTeX
 
 In this section I want to compare currently used version control methods for Word documents with what is possible with \LaTeX. One of the main powers of \LaTeX\ is that it is fully compatible with text-based version control software such as Git, the free and open source software used by almost all developers and software companies. Here we will not look at all the features of Git or how it works, but trust that it is more than powerful enough for the needs of WSP.
 
-\subsection{Current Practice}
-
-There are two main types of differences that someone may care about:
+We will look at an approach to version control used on my current project and then see what is possible with a combination of \LaTeX\ and Git. There are two main types of differences that someone may care about tracking as given below.
 
 \begin{itemize}
 	\item Changes in meaning such as ``Updated system description to comply with requirement xyz".
 	\item All changes to the text and formatting.
 \end{itemize}
 
-On my current project we track the former in a table of changes and the latter with cross-through formatting and green highlighting. It may be the case that this project has a uniquely horrifying version control policy, but nonetheless it is worth highlighing the problems with it.
+\subsection{Current Practice}
+
+On my current project we track the former type of change in a table of changes and the latter type of change with cross-through formatting and green highlighting. It may be the case that this project has a uniquely horrifying version control policy, but nonetheless it is worth highlighing the problems with it.
 
 \begin{itemize}
-	\item \textbf{Manually recording changes.} If someone forgets to record the change or incorrectly applies the formatting then the change is not properly tracked. As Git does this automatically it saves the need for the author to do it and also ensures it is always done correctly.
+	\item \textbf{Manually recording changes.} If someone forgets to record the change or incorrectly applies the formatting then the change is not properly tracked. Git does this automatically it saves the need for the author to do it and also ensures it is always done correctly.
 	\item \textbf{The document is harder to read.} The current version should not be polluted by the remnants of superseded parts. I regularly see paragraphs weaving in and out of superseded and non-superseded text which makes the current version hard to parse. It is not possible to easily see the document without the version control formatting either.
 	\item \textbf{Updating revisions.} When a new revision is being prepared, the first task is to remove all text with cross-through formatting and remove all green highlight. This is a manual task that should not exist. As before, this process is also error prone - consider figure~\ref{fig:4Strikethrough} where it is almost impossible to see the difference between a four that has been removed from the document and one that has been added. Figure~\ref{fig:UnclearStrikethrough} has a single row that has been removed that could easily be missed when preparing the next revision.
-	\item \textbf{Formatting.} Formatting in Word is often inherent to the subject of the formatting or is given by invisible characters\footnote{For example, the formatting of a bullet point or paragraph number is given by an invisible formatting character at the end of the clause and I have seen multiple people confused as to why they cannot clear highlighting from a previous revision.} so cannot be tracked by this method. Other changes in formatting such as the structure of a table can only be recorded by duplicating the whole table and applying cross-through formatting.
-	\item \textbf{Confusion between types of change.} There is no distinction between the two types of changes making for useless tables of changes. I have seen sections completely rewritten with the description ``Text revised" and the tense of a single unimportant word changed where the letters that were added and removed were stated. Both of these examples followed the version control policy exactly.
+	\item \textbf{Formatting.} Formatting in Word is often inherent to the subject of the formatting or is given by invisible characters\footnote{For example, the formatting of a bullet point or paragraph number is given by an invisible formatting character at the end of the clause and I have seen multiple people confused as to why they cannot clear this formatting.} so cannot be tracked by this method. Other changes in formatting such as the structure of a table can only be recorded by duplicating the whole table and applying cross-through formatting.
+	\item \textbf{Confusion between types of change.} There is no distinction between the two types of changes, often making for useless tables of changes. I have seen sections completely rewritten with the description ``Text revised", and the tense of a single unimportant word changed where the letters that were added and removed were stated. Both of these examples followed the version control policy exactly.
 \end{itemize}
 
 \begin{figure}[!htb]
 	% Store largest image in a box
-	\savebox{\imagebox}{\includegraphics[width=0.75\textwidth]{Figures/ExampleOfPoorVersionControl.png}}
-	\begin{subfigure}[t]{0.2\textwidth}
+	\savebox{\imagebox}{\includegraphics[width=0.65\textwidth]{Figures/ExampleOfPoorVersionControl.png}}
+	\begin{subfigure}[t]{0.3\textwidth}
 		\centering\raisebox{\dimexpr0.5\ht\imagebox-0.5\height}{% Raise smaller image into place
-			\includegraphics[width=\textwidth]{Figures/StrikethroughFour.png}}
+			\includegraphics[width=0.7\textwidth]{Figures/StrikethroughFour.png}}
 			\caption{Strike-through comparison}
 			\label{fig:4Strikethrough}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}[t]{0.75\textwidth}
+	\begin{subfigure}[t]{0.65\textwidth}
 		\centering\usebox{\imagebox}% Place largest image
-		\caption{Current version control example}
+		\caption{Easy to miss where text is removed}
 		\label{fig:UnclearStrikethrough}
 	\end{subfigure}
 	\caption{Examples of a current method of version control for Word documents.}
 	\label{fig:WordVersionControl}
 \end{figure}
 
-
 \subsection{Resolution with \LaTeX\ and Git}
 
-Let us see how an approach with \LaTeX\ and git avoids these problems. Before we look into how Git can avoid these issues we must first have some understanding of Git.
+Before we look into how Git can avoid these issues we must first have some understanding of Git. In short, after some changes are made the author creates something called a ``commit" which is a snapshot of the project at that point in time\footnote{Git does not store only the changes and it also does not create a copy of the whole project. It works in a clever way that is beyond the scope of this essay that means the total amount of stored data is small for sensible use cases.}, and then this commit can be sent to the remote repository. \href{https://www.youtube.com/watch?v=e9lnsKot_SQ}{\underline{This video}} gives a simple explanation of the Git workflow for those wanting to know more.
 
-In short, after some changes are made the author creates something called a ``commit" which is a snapshot of the project at that point in time\footnote{Git does not store only the changes and it also does not create a copy of the whole project. It works in a clever way that is beyond the scope of this essay that means the total amount of stored data is small.}, and then this commit can be sent to a shared repository. \href{https://www.youtube.com/watch?v=e9lnsKot_SQ}{\underline{This video}} gives a simple explanation of the Git workflow for those wanting to know more.
+The difference between any two commits can be produced on command and an example is seen in figure~\ref{fig:ExampleOfDiff}. While the version control process described above only gives the differences between neighbouring versions, Git can produce the difference between any two versions. As formatting is defined with text, such changes are easily tracked using this method as well. Git has a variety of tools for querying how two entities are different to each so things like whether any of the inserted images have changed or which files have changed, moved, or been deleted can be found easily as well.
 
-The difference between any two commits can be produced on command is seen in figure~\ref{fig:ExampleOfDiff}.
+There is even a tool specically for the \LaTeX\ and Git workflow to take these identified differences and produce a PDF showing them. This is demonstrated in figure~\ref{fig:ExampleOfDiffPdf} which can be produced at any moment with a single simple command. This recreates the result of the previously outlined method but without any of the drawbacks of needing to format changes manually.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\textwidth]{Figures/ExampleOfDiff2.png}
+	\includegraphics[width=0.85\textwidth]{Figures/ExampleOfDiff.png}
 	\caption{An example of the difference between two files.}
 	\label{fig:ExampleOfDiff}
 \end{figure}
 
-\LaTeX\ is also better for version control. As it is all text-based it can be used with version control software like Git, which gives tracability, control over branches, and easy computation of differences between versions. This also tracks any formatting changes that cannot be handled by the template such as the shape of a table.
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.85\textwidth]{Figures/ExampleOfDiffPdf.png}
+\caption{An extract from an automatically generated PDF showing differences between versions.}
+\label{fig:ExampleOfDiffPdf}
+\end{figure}
+
+Each commit contains metadata about who made the commit. This means who did what change and when that change was made is also tracked. A commit is given a brief description of the change and includes a file where more detail can be provided. This means why each small change was made can also be tracked. I was working on a project where ``Should" was changed to ``Shall" and it caused a four-year long saga. This change should not have happened, and if the reason for the change was understood then perhaps it could have been reverted. While name and date information can be tracked using Word's track changes feature, if someone simply accepts all the changes then this information is lost. In contrast, a commit is immutable so cannot be changed once created\footnote{Git uses SHA-256 hashes to ensure this.}.
+
+\LaTeX\ and Git are also good at maintaining a single source of truth. When a duplicate copy of something is made it is almost certain that they will diverge, making future interpretation of which is true a nightmare. This is why copying by value should be avoided unless absolutely necessary. As previously mentioned, \LaTeX\ inserts figures and other documents by reference. In Git there is only one remote repository that everything ultimately syncs with. Compare this with Word where figures and other included documents are necessarily copied by value and where the file can be downloaded or otherwise copied. Passing comment sheets around via email is also an easy way to end up with muddled versions.
+
+\subsection{Comments and High-Level Changes}
+
+Comments about a document can be discussed by raising an issue on the remote repository. In figure~\ref{fig:GitHubCommentingProcess} I have simulated this process where I act as both a client and the author.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Figures/CommentDiscussionExample.png}
+	\caption{How comments can be made on a document in GitHub.}
+	\label{fig:GitHubCommentingProcess}
+\end{figure}
+
+\subsection{Other Features of Git}
+
+Almost all the power of Git will not be needed by almost all users and they can likely work just fine with a very simple workflow interacting with Git via a graphical user interface. There are more advanced features of Git that are worthy of note however.
+
+\begin{itemize}
+	\item \textbf{Branching.} Branching allows multiple versions of a document to be worked on concurrently. This is useful when a  different aims or directions are being explored.
+	\item \textbf{Hashing documents.} Git stores a hash of documents meaning whether they have changed can be verified. This is useful when PDF files are attached as appendices.
+	\item \textbf{Signing commits.} If the undisputable time and source of a commit is necessary, it is possible to do this with integration with GNU Privacy Guard. This is cryptographically secure and allows the validity of commits to be verified\footnote{For good reasons outside the scope of this essay, Git uses a user's system time (or even a time given explicitly given by the user) in a commit meaning the time can be spoofed without this method.}.
+\end{itemize}
+
+\subsection{Implementation}
+
+A host for any remote repositories is needed. Microsoft owns GitHub and provides hosting services, but there are also other options such as GitLab which is free and open source. This means it can be self-hosted by WSP, removing dependence on external parties and keeping all uploaded files completely internal to WSP.
+
+While the use of Git is standard in software engineering, it may be deemed too complex for all employees to utilise effectively. Real-time collaborative editing can be done using Overleaf which is free and open source software. As before, this means WSP is able to self-host it, with all the independence and security benefits as before.
