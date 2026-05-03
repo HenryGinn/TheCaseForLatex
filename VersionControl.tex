@@ -25,7 +25,7 @@ On my current project we track the former type of change in a table of changes a
 	\item \textbf{The document is harder to read.} The current version should not be polluted by the remnants of superseded parts. I regularly see paragraphs weaving in and out of superseded and non-superseded text which makes the current version hard to parse. It is not possible to easily see the document without the version control formatting either.
 	\item \textbf{Updating revisions.} When a new revision is being prepared, the first task is to remove all text with cross-through formatting and remove all green highlight. This is a manual task that should not exist. As before, this process is also error prone - consider figure~\ref{fig:4Strikethrough} where it is almost impossible to see the difference between a four that has been removed from the document and one that has been added. Figure~\ref{fig:UnclearStrikethrough} has a single row that has been removed that could easily be missed when preparing the next revision.
 	\item \textbf{Formatting.} Formatting in Word is often inherent to the subject of the formatting or is given by invisible characters\footnote{For example, the formatting of a bullet point or paragraph number is given by an invisible formatting character at the end of the clause and I have seen multiple people confused as to why they cannot clear this formatting.} so cannot be tracked by this method. Other changes in formatting such as the structure of a table can only be recorded by duplicating the whole table and applying cross-through formatting.
-	\item \textbf{Confusion between types of change.} There is no distinction between the two types of changes, often making for useless tables of changes. I have seen sections completely rewritten with the description ``Text revised", and the tense of a single unimportant word changed where the letters that were added and removed were stated. Both of these examples followed the version control policy exactly.
+	\item \textbf{Confusion between types of change.} There is no distinction between the two types of changes, often making for useless tables of changes. I have seen rewritten sections described as ``Text revised", and the minutia of how the tense of a single unimportant word was corrected given. Both of these examples followed the version control policy exactly.
 \end{itemize}
 
 \begin{figure}[!htb]
@@ -49,7 +49,7 @@ On my current project we track the former type of change in a table of changes a
 
 \subsection{Resolution with \LaTeX\ and Git}
 
-Before we look into how Git can avoid these issues we must first have some understanding of Git. In short, after some changes are made the author creates something called a ``commit" which is a snapshot of the project at that point in time\footnote{Git does not store only the changes and it also does not create a copy of the whole project. It works in a clever way that is beyond the scope of this essay that means the total amount of stored data is small for sensible use cases.}, and then this commit can be sent to the remote repository. \href{https://www.youtube.com/watch?v=e9lnsKot_SQ}{\underline{This video}} gives a simple explanation of the Git workflow for those wanting to know more.
+Before we look into how Git can avoid these issues we must first have some understanding of Git. In short, after some changes are made the author creates something called a ``commit" which is a snapshot of the project at that point in time\footnote{Git does not store only the changes and it also does not create a copy of the whole project. It works in a clever way that is beyond the scope of this essay that means the total amount of stored data is small for sensible use cases.}, and then this commit can be sent to the remote repository. An example commit is given \href{https://github.com/HenryGinn/TheCaseForLatex/commit/b12f567b9b48059ad4df2259ec68334365e4bf49}{\underline{here}} with the differences from the previous commit shown by default. \href{https://www.youtube.com/watch?v=e9lnsKot_SQ}{\underline{This video}} gives a simple explanation of the Git workflow for those wanting to know more.
 
 The difference between any two commits can be produced on command and an example is seen in figure~\ref{fig:ExampleOfDiff}. While the version control process described above only gives the differences between neighbouring versions, Git can produce the difference between any two versions. As formatting is defined with text, such changes are easily tracked using this method as well. Git has a variety of tools for querying how two entities are different to each so things like whether any of the inserted images have changed or which files have changed, moved, or been deleted can be found easily as well.
 
@@ -63,43 +63,62 @@ There is even a tool specically for the \LaTeX\ and Git workflow to take these i
 \end{figure}
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=0.85\textwidth]{Figures/ExampleOfDiffPdf.png}
-\caption{An extract from an automatically generated PDF showing differences between versions.}
-\label{fig:ExampleOfDiffPdf}
+	\centering
+	\includegraphics[width=0.85\textwidth]{Figures/ExampleOfDiffPdf.png}
+	\caption{An extract from an automatically generated PDF showing differences between versions.}
+	\label{fig:ExampleOfDiffPdf}
 \end{figure}
 
 Each commit contains metadata about who made the commit. This means who did what change and when that change was made is also tracked. A commit is given a brief description of the change and includes a file where more detail can be provided. This means why each small change was made can also be tracked. I was working on a project where ``Should" was changed to ``Shall" and it caused a four-year long saga. This change should not have happened, and if the reason for the change was understood then perhaps it could have been reverted. While name and date information can be tracked using Word's track changes feature, if someone simply accepts all the changes then this information is lost. In contrast, a commit is immutable so cannot be changed once created\footnote{Git uses SHA-256 hashes to ensure this.}.
 
-\LaTeX\ and Git are also good at maintaining a single source of truth. When a duplicate copy of something is made it is almost certain that they will diverge, making future interpretation of which is true a nightmare. This is why copying by value should be avoided unless absolutely necessary. As previously mentioned, \LaTeX\ inserts figures and other documents by reference. In Git there is only one remote repository that everything ultimately synchronises with. Compare this with Word where figures and other included documents are necessarily copied by value and where the file can be downloaded or otherwise copied. Passing comment sheets around via email is also an easy way to end up with muddled versions.
+\LaTeX\ and Git are also good at maintaining a single source of truth. When a duplicate copy of something is made it is almost certain that they will diverge, making future judgement on which to use a nightmare. This is why copying by value should be avoided unless absolutely necessary. As previously mentioned, \LaTeX\ inserts figures and other documents by reference. In Git there is only one remote repository that everything synchronises with. Compare this with Word where figures and other included documents are necessarily copied by value and where the file can be downloaded or otherwise copied. Passing comment sheets around via email is also an easy way to end up with muddled versions.
 
-\subsection{Comments and High-Level Changes}
+\subsection{Comments, Reviews, and Releases}
+\label{sec:CommentsReviewsAndReleases}
 
 Comments about a document can be discussed by raising an issue on the remote repository. In figure~\ref{fig:GitHubCommentingProcess} I have simulated this process where I act as both a client and the author. This means all names and dates are automatically tracked and the flow of conversation is clear unlike with comment sheets in Excel.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.85\textwidth]{Figures/CommentDiscussionExample.png}
+	\includegraphics[width=0.92\textwidth]{Figures/CommentDiscussionExample.png}
 	\caption{How comments can be made on a document in GitHub.}
 	\label{fig:GitHubCommentingProcess}
 \end{figure}
 
-When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes.
+While not necessary and a little more complicated to do so, the review process can also be done using Git repository hosting services such as GitHub (see section~\ref{sec:Implementation}). A branch of the history is created when a new revision is being prepared and when the author is ready to publish they request to merge their changes back into the main document history. The author and checker can have a back and forth conversation, updating the document with commits as they go. When all changes are accepted the merge can be executed and the new PDF could then be uploaded as a release. An example of this process is given in figure~\ref{fig:PullRequest}.
 
-Git should not be used for tracking changes in binary files such as PDFs and instead these should be uploaded as releases.
+\begin{figure}[!htb]
+	% Store largest image in a box
+	\savebox{\imagebox}{\includegraphics[width=0.39\textwidth]{Figures/PullRequestUpdated.png}}
+	\begin{subfigure}[t]{0.51\textwidth}
+		\centering\raisebox{\dimexpr0.5\ht\imagebox-0.5\height}{% Raise smaller image into place
+			\includegraphics[width=\textwidth]{Figures/PullRequest.png}}
+			\caption{Initial review}
+			\label{fig:PullRequestReview}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.39\textwidth}
+		\centering\usebox{\imagebox}% Place largest image
+		\caption{Update with feedback}
+		\label{fig:PullRequestUpdated}
+	\end{subfigure}
+	\caption{An example of the review process using GitHub.}
+	\label{fig:PullRequest}
+\end{figure}
 
 \subsection{Other Features of Git}
 
 Almost all the power of Git will not be needed by almost all users and they can likely work just fine with a very simple workflow interacting with Git via a graphical user interface. There are more advanced features of Git that are worthy of note however.
 
-\begin{itemize}
-	\item \textbf{Branching.} Branching allows multiple versions of a document to be worked on concurrently. This is useful when a  different aims or directions are being explored.
+\begin{itemize} 
+	\item \textbf{Branching.} Branching allows multiple versions of a document to be worked on concurrently. This is useful when a  different aims or directions are being explored. This is also necessary for doing reviews as discussed in section~\ref{sec:CommentsReviewsAndReleases}.
 	\item \textbf{Hashing documents.} Git stores a hash of documents meaning whether they have changed can be verified. This is useful when PDF files are attached as appendices.
 	\item \textbf{Signing commits.} If the undisputable time and source of a commit is necessary, it is possible to do this with integration with GNU Privacy Guard. This is cryptographically secure and allows the validity of commits to be verified\footnote{For good reasons outside the scope of this essay, Git uses a user's system time (or even a time given explicitly given by the user) in a commit meaning the time can be spoofed without this method.}.
 \end{itemize}
 
 \subsection{Implementation}
+\label{sec:Implementation}
 
-A host for any remote repositories is needed. Microsoft owns GitHub and provides hosting services, but there are also other options such as GitLab which is free and open source. This means it can be self-hosted by WSP, removing dependence on external parties and keeping all uploaded files completely internal to WSP.
+A host for any remote repositories is needed. Microsoft owns GitHub and provides hosting services, but there are also other options such as GitLab which is free and open source. This means it can be self-hosted by WSP, removing dependence on external parties and keeping all files completely internal.
 
-While the use of Git is standard in software engineering, it may be deemed too complex for all employees to utilise effectively. Real-time collaborative editing can be done using Overleaf which is free and open source software. As before, this means WSP is able to self-host it, with all the independence and security benefits as before.
+While the use of Git is standard in software engineering, it may be deemed too complex for all employees to utilise effectively. Real-time collaborative editing can be done using Overleaf which can be self-hosted, with all the independence and security benefits as before.
