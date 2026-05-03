@@ -63,10 +63,10 @@ There is even a tool specically for the \LaTeX\ and Git workflow to take these i
 \end{figure}
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=0.85\textwidth]{Figures/ExampleOfDiffPdf.png}
-\caption{An extract from an automatically generated PDF showing differences between versions.}
-\label{fig:ExampleOfDiffPdf}
+	\centering
+	\includegraphics[width=0.85\textwidth]{Figures/ExampleOfDiffPdf.png}
+	\caption{An extract from an automatically generated PDF showing differences between versions.}
+	\label{fig:ExampleOfDiffPdf}
 \end{figure}
 
 Each commit contains metadata about who made the commit. This means who did what change and when that change was made is also tracked. A commit is given a brief description of the change and includes a file where more detail can be provided. This means why each small change was made can also be tracked. I was working on a project where ``Should" was changed to ``Shall" and it caused a four-year long saga. This change should not have happened, and if the reason for the change was understood then perhaps it could have been reverted. While name and date information can be tracked using Word's track changes feature, if someone simply accepts all the changes then this information is lost. In contrast, a commit is immutable so cannot be changed once created\footnote{Git uses SHA-256 hashes to ensure this.}.
@@ -80,29 +80,29 @@ Comments about a document can be discussed by raising an issue on the remote rep
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.85\textwidth]{Figures/CommentDiscussionExample.png}
+	\includegraphics[width=0.87\textwidth]{Figures/CommentDiscussionExample.png}
 	\caption{How comments can be made on a document in GitHub.}
 	\label{fig:GitHubCommentingProcess}
 \end{figure}
 
-While not necessary and a little more complicated to do so, the review process can also be done using Git. When a new revision is being prepared, a new branch of the history is created. When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes. This allows a back and forth before the changes are accepted and the branch is merged back into the main document history. The new PDF would then be uploaded as a release\footnote{It is bad practice to track generated files using Git.}. An example of this process is given in figure~\ref{fig:PullRequest}.
+While not necessary and a little more complicated to do so, the review process can also be done using Git repository hosting services such as GitHub (see section~\ref{sec:Implementation}). A branch of the history is created when a new revision is being prepared and when the author is ready to publish they request to merge their changes back into the main document history. The author and checker can have a back and forth conversation, updating the document with commits as they go. When all changes are accepted the merge can be executed and the new PDF could then be uploaded as a release. An example of this process is given in figure~\ref{fig:PullRequest}.
 
-\begin{figure}[!tb]
-	\centering
-	\begin{subfigure}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{Figures/PullRequest.png}
-		\caption{96 dpi raster made with matplotlib}
-		\label{fig:PullRequestReview}
+\begin{figure}[!htb]
+	% Store largest image in a box
+	\savebox{\imagebox}{\includegraphics[width=0.39\textwidth]{Figures/PullRequestUpdated.png}}
+	\begin{subfigure}[t]{0.51\textwidth}
+		\centering\raisebox{\dimexpr0.5\ht\imagebox-0.5\height}{% Raise smaller image into place
+			\includegraphics[width=\textwidth]{Figures/PullRequest.png}}
+			\caption{Initial review}
+			\label{fig:PullRequestReview}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{Figures/PullRequestUpdated.png}
-		\caption{}
+	\begin{subfigure}[t]{0.39\textwidth}
+		\centering\usebox{\imagebox}% Place largest image
+		\caption{Update with feedback}
 		\label{fig:PullRequestUpdated}
 	\end{subfigure}
-	\caption{text}
+	\caption{An example of the review process using GitHub.}
 	\label{fig:PullRequest}
 \end{figure}
 
@@ -117,7 +117,8 @@ Almost all the power of Git will not be needed by almost all users and they can 
 \end{itemize}
 
 \subsection{Implementation}
+\label{sec:Implementation}
 
-A host for any remote repositories is needed. Microsoft owns GitHub and provides hosting services, but there are also other options such as GitLab which is free and open source. This means it can be self-hosted by WSP, removing dependence on external parties and keeping all uploaded files completely internal to WSP.
+A host for any remote repositories is needed. Microsoft owns GitHub and provides hosting services, but there are also other options such as GitLab which is free and open source. This means it can be self-hosted by WSP, removing dependence on external parties and keeping all files completely internal.
 
-While the use of Git is standard in software engineering, it may be deemed too complex for all employees to utilise effectively. Real-time collaborative editing can be done using Overleaf which is free and open source software. As before, this means WSP is able to self-host it, with all the independence and security benefits as before.
+While the use of Git is standard in software engineering, it may be deemed too complex for all employees to utilise effectively. Real-time collaborative editing can be done using Overleaf which can be self-hosted, with all the independence and security benefits as before.
