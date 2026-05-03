@@ -73,7 +73,8 @@ Each commit contains metadata about who made the commit. This means who did what
 
 \LaTeX\ and Git are also good at maintaining a single source of truth. When a duplicate copy of something is made it is almost certain that they will diverge, making future interpretation of which is true a nightmare. This is why copying by value should be avoided unless absolutely necessary. As previously mentioned, \LaTeX\ inserts figures and other documents by reference. In Git there is only one remote repository that everything ultimately synchronises with. Compare this with Word where figures and other included documents are necessarily copied by value and where the file can be downloaded or otherwise copied. Passing comment sheets around via email is also an easy way to end up with muddled versions.
 
-\subsection{Comments and High-Level Changes}
+\subsection{Comments, Reviews, and Releases}
+\label{sec:CommentsReviewsAndReleases}
 
 Comments about a document can be discussed by raising an issue on the remote repository. In figure~\ref{fig:GitHubCommentingProcess} I have simulated this process where I act as both a client and the author. This means all names and dates are automatically tracked and the flow of conversation is clear unlike with comment sheets in Excel.
 
@@ -84,16 +85,14 @@ Comments about a document can be discussed by raising an issue on the remote rep
 	\label{fig:GitHubCommentingProcess}
 \end{figure}
 
-When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes.
-
-Git should not be used for tracking changes in binary files such as PDFs and instead these should be uploaded as releases.
+While not necessary and a little more complicated to do so, the review process can also be done using Git. When a new revision is being prepared, a new branch of the history is created. When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes. This allows a back and forth before the changes are accepted and the branch is merged back into the main document history. The new PDF would then be uploaded as a release\footnote{It is bad practice to track generated files using Git.}. An example of this process is given in figure INSERT FIGURE AND FIGURE REFERENCE HERE.
 
 \subsection{Other Features of Git}
 
 Almost all the power of Git will not be needed by almost all users and they can likely work just fine with a very simple workflow interacting with Git via a graphical user interface. There are more advanced features of Git that are worthy of note however.
 
-\begin{itemize}
-	\item \textbf{Branching.} Branching allows multiple versions of a document to be worked on concurrently. This is useful when a  different aims or directions are being explored.
+\begin{itemize} 
+	\item \textbf{Branching.} Branching allows multiple versions of a document to be worked on concurrently. This is useful when a  different aims or directions are being explored. This is also necessary for doing reviews as discussed in section~\ref{sec:CommentsReviewsAndReleases}.
 	\item \textbf{Hashing documents.} Git stores a hash of documents meaning whether they have changed can be verified. This is useful when PDF files are attached as appendices.
 	\item \textbf{Signing commits.} If the undisputable time and source of a commit is necessary, it is possible to do this with integration with GNU Privacy Guard. This is cryptographically secure and allows the validity of commits to be verified\footnote{For good reasons outside the scope of this essay, Git uses a user's system time (or even a time given explicitly given by the user) in a commit meaning the time can be spoofed without this method.}.
 \end{itemize}
