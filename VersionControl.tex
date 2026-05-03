@@ -71,18 +71,22 @@ There is even a tool specically for the \LaTeX\ and Git workflow to take these i
 
 Each commit contains metadata about who made the commit. This means who did what change and when that change was made is also tracked. A commit is given a brief description of the change and includes a file where more detail can be provided. This means why each small change was made can also be tracked. I was working on a project where ``Should" was changed to ``Shall" and it caused a four-year long saga. This change should not have happened, and if the reason for the change was understood then perhaps it could have been reverted. While name and date information can be tracked using Word's track changes feature, if someone simply accepts all the changes then this information is lost. In contrast, a commit is immutable so cannot be changed once created\footnote{Git uses SHA-256 hashes to ensure this.}.
 
-\LaTeX\ and Git are also good at maintaining a single source of truth. When a duplicate copy of something is made it is almost certain that they will diverge, making future interpretation of which is true a nightmare. This is why copying by value should be avoided unless absolutely necessary. As previously mentioned, \LaTeX\ inserts figures and other documents by reference. In Git there is only one remote repository that everything ultimately syncs with. Compare this with Word where figures and other included documents are necessarily copied by value and where the file can be downloaded or otherwise copied. Passing comment sheets around via email is also an easy way to end up with muddled versions.
+\LaTeX\ and Git are also good at maintaining a single source of truth. When a duplicate copy of something is made it is almost certain that they will diverge, making future interpretation of which is true a nightmare. This is why copying by value should be avoided unless absolutely necessary. As previously mentioned, \LaTeX\ inserts figures and other documents by reference. In Git there is only one remote repository that everything ultimately synchronises with. Compare this with Word where figures and other included documents are necessarily copied by value and where the file can be downloaded or otherwise copied. Passing comment sheets around via email is also an easy way to end up with muddled versions.
 
 \subsection{Comments and High-Level Changes}
 
-Comments about a document can be discussed by raising an issue on the remote repository. In figure~\ref{fig:GitHubCommentingProcess} I have simulated this process where I act as both a client and the author.
+Comments about a document can be discussed by raising an issue on the remote repository. In figure~\ref{fig:GitHubCommentingProcess} I have simulated this process where I act as both a client and the author. This means all names and dates are automatically tracked and the flow of conversation is clear unlike with comment sheets in Excel.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.9\textwidth]{Figures/CommentDiscussionExample.png}
+	\includegraphics[width=0.85\textwidth]{Figures/CommentDiscussionExample.png}
 	\caption{How comments can be made on a document in GitHub.}
 	\label{fig:GitHubCommentingProcess}
 \end{figure}
+
+When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes.
+
+Git should not be used for tracking changes in binary files such as PDFs and instead these should be uploaded as releases.
 
 \subsection{Other Features of Git}
 
