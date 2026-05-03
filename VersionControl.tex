@@ -85,7 +85,26 @@ Comments about a document can be discussed by raising an issue on the remote rep
 	\label{fig:GitHubCommentingProcess}
 \end{figure}
 
-While not necessary and a little more complicated to do so, the review process can also be done using Git. When a new revision is being prepared, a new branch of the history is created. When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes. This allows a back and forth before the changes are accepted and the branch is merged back into the main document history. The new PDF would then be uploaded as a release\footnote{It is bad practice to track generated files using Git.}. An example of this process is given in figure INSERT FIGURE AND FIGURE REFERENCE HERE.
+While not necessary and a little more complicated to do so, the review process can also be done using Git. When a new revision is being prepared, a new branch of the history is created. When an author is ready to publish a document they can create something called a pull request and the checker can make comments and ask for changes. This allows a back and forth before the changes are accepted and the branch is merged back into the main document history. The new PDF would then be uploaded as a release\footnote{It is bad practice to track generated files using Git.}. An example of this process is given in figure~\ref{fig:PullRequest}.
+
+\begin{figure}[!tb]
+	\centering
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/PullRequest.png}
+		\caption{96 dpi raster made with matplotlib}
+		\label{fig:PullRequestReview}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/PullRequestUpdated.png}
+		\caption{}
+		\label{fig:PullRequestUpdated}
+	\end{subfigure}
+	\caption{text}
+	\label{fig:PullRequest}
+\end{figure}
 
 \subsection{Other Features of Git}
 
