@@ -2,6 +2,7 @@
 \label{sec:Formatting}
 
 \subsection{Consistency}
+\label{subsec:Consistency}
 
 A document with poor or inconsistent formatting makes WSP look unprofessional, but fixing formatting is not something we should need to waste our time or client's money on. \LaTeX\ ensures consistency by defining it in one place only and applying it globally across the document\footnote{It is possible to deviate from the template locally if you really want to but typically this is awkward to do. This is because you are trying to defy the compiler which almost always means you are attempting to commit crimes against typesetting and should not be doing whatever you are trying to do.}. Once a template is defined, the formatting is abstracted away from the author so they can focus soley on the content.
 
@@ -9,14 +10,19 @@ Some may argue that Word can do this through the styles feature, but it is easy 
 
 Creating a template can be quite complicated, although this would only need to be defined once at the start of the project and users would not need such proficiency with \LaTeX. I am giving some examples here only to illustrate how formatting can be defined in such a text-based style. In the document preamble (code that is not included in the document itself and where the template is defined), you could use the following to change the section numbering. While ugly and not something you would do in practice, this would make this subsection number look like {\input{ExampleHeaderFormatting}\unskip\unskip\thesubsection}.
 
-\lstinputlisting{ExampleHeaderFormatting.tex}
+% Need to suspend tagging because listings is not currently supported.
+\SuspendTagging{listings}
+\lstinputlisting[language=TeX]{ExampleHeaderFormatting.tex}\par
+\ResumeTagging{listings}
 
 \subsection{Word vs \LaTeX}
+\label{subsec:WordVsLatex}
 
 Often I find Word does weird things that no one understands and there is no good fix. For example, I have had tables where the boldness of text would not save and the \href{https://learn.microsoft.com/en-us/answers/questions/5092571/tables-in-ms-word-are-changing-when-saved-and-re-o}{\underline{typical solution}} to a problem like this is to recreate the whole table from scratch or copy and paste everything into a new document. I have seen colleagues input tables as images rather than deal with Word's formatting, a veritable crime against typesetting that looks extremely unprofessional (this also means you cannot search or easily copy text in the table). Pasting tables from other documents that use a different template is also a hassle, yet with \LaTeX\ it is a simple copy and paste.
 
 The exact positioning of elements is not determined by the user in \LaTeX. Instead this is done by the compiler which was designed with best typesetting practice in mind, meaning documents look far more professional than in Word. For example, Word splits tables across pages by default, but \LaTeX\ tries hard to avoid doing this where it can. I have read textbooks made with \LaTeX\ using out-of-the-box settings, yet work done with Word would need considerable tweaking to be brought up to a publishable standard.
 
 \subsection{Advanced Features}
+\label{subsec:AdvancedFeatures}
 
 \LaTeX\ also allows for more advanced features than Word and gives a lot more control. As simple examples, it is possible to adjust how much weight it should give towards avoiding widows or exactly how much space you want between two elements. For a more complicated example, WSP recently changed the template used for CVs. With \LaTeX\ this could have been done with a simple script to swap out the file that defined the formatting and then recompiled all CVs with the new template. A competant system administrator could have done this in a few minutes, yet instead this task needed to be done individually by thousands of people.

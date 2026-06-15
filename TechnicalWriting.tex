@@ -2,6 +2,7 @@
 \label{sec:TechnicalWriting}
 
 \subsection{Mathematics}
+\label{subsec:Mathematics}
 
 One of the main powers of \LaTeX\ is the ability to format mathematics. In equation~\eqref{eqn:ClosureOfSO2} below is a simple example showing closure of the $SO(2)$ group, something that would be extremely painful to typeset in Word but is trivial to do in \LaTeX.
 \begin{subequations}
@@ -37,6 +38,7 @@ We note the following that are impossible, awkward, or very manual to do in Word
 \end{itemize}
 
 \subsection{Images}
+\label{subsec:Images}
 
 Images are inserted by giving a path to the image. This means that the document also updates when images are updated when it is recompiled. Copying by reference means there is one version of the truth which is one of the reasons why copying by value in situations like this is poor practice. I have needed to spend a lot of time reinserting images into documents because it appears Word can only copy by value.
 
@@ -45,6 +47,7 @@ Word and other Microsoft Office Suite products are very poor at handling vector 
 Word's strange behaviour with images and exporting wastes time. Word will compress images for you by default when pasting an image into the document, and even stranger, the level of compression depends on the zoom level of the editor. I have also seen documents where all the figures are unreadable because Word decided to compress them between revisions. There are many ways to export to PDF in Word, all of which behave differently and all of which compress images no matter what settings are used. \LaTeX\ will produce a PDF with the exact images it was given.
 
 \subsection{Plots and Diagrams}
+\label{subsec:PlotsAndDiagrams}
 
 Going further than this, plots and figures can even be created inside \LaTeX\ itself, although this is typically for more advanced users. This means the font in plot titles and axis labels can be consistent with the rest of the document and even the entire project. I have not found any other way of achieving this conveniently for figures that scale to the given size automatically. Figure~\ref{fig:ExamplePlots} demonstrates the difference in quality. Even though figure~\ref{fig:ExampleRasterImage} has been well-made in Python, the lower resolution, inconsistent style, and nasty typesetting of $\pi$ symbols make it look noticibly worse than figure~\ref{fig:ExampleVectorImage}. Figure~\ref{fig:ExampleVectorImage} has infinite resolution and the added benefit of highlightable and searchable text\footnote{It is not necessary to make the figure in \LaTeX\ for this functionality, any vector image would have this.}.
 
@@ -83,6 +86,7 @@ Going further than this, plots and figures can even be created inside \LaTeX\ it
 \end{figure}
 
 \subsection{Other}
+\label{subsec:Other}
 
 Below is a list of other features of \LaTeX\ that make it better for writing technical documents that Word does not support.
 

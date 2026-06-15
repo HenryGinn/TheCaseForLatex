@@ -4,6 +4,7 @@
 In this section I want to give some examples of times where the use of Word has caused me significant grief which would never have been a problem when using a combination of \LaTeX\ and Git. Here I want to highlight how much time and energy is wasted by using Word. The section is concluded by a list of annoying behaviours of Word.
 
 \subsection{Attaching PDF Documents in Appendices}
+\label{subsec:AttachingPdfDocumentsInAppendices}
 
 Several times I have had to attach spreadsheets as an appendix to a PDF as part of a deliverable\footnote{Personally I believe this is not best practice and we should be sending the native file, but we will ignore that.}. Below is the process we use to get the correct page numbers in the footer and table of contents and links that go to the intended page:
 
@@ -20,6 +21,7 @@ There are several problems with this approach. Firstly, this is an error-prone p
 Let us consider how this works in \LaTeX. All sheets are exported to PDF without page numbers and there is a simple single line of code that tells the compiler to include a PDF with page numbers. All links and page numbers are done for you and are updated automatically in response to any changes. In addition to this, these page numbers (and any other header or footer information) will follow the document template given and would not need to be recreated in Excel.
 
 \subsection{Version Control}
+\label{subsec:VersionControl}
 
 Recently I had a Sharepoint synced folder that stopped syncing and I did not notice for a month. This meant that several documents I was working on had diverged from the main version and I would need to merge any changes I had made into the main document. To be fully confident I had not missed anything, I needed to copy both documents into Notepad, remove the clause numbers to stop superfluous differences being detected, and then use a tool that identified differences between two texts. After this I had to check all formatting was correct because this method would not have been picked up formatting differences.
 

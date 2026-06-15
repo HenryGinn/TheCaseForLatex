@@ -1,0 +1,30 @@
+\section{Managing a Suite of Documents}
+\label{sec:ManagingASuiteOfDocuments}
+
+\subsection{Organising Document Repositories}
+\label{subsec:OrganisingDocumentRepositories}
+
+
+\subsection{Cross-Referencing External Documents}
+\label{subsec:CrossReferencingExternalDocuments}
+
+To eliminate duplication it is convenient to reference other documents. Saying that a piece of information is somewhere in a potentially very long document is less than useful however, so we may desire to cross-reference a particular subsection or clause. The naive solution is to simply refer to the section number of interest, however this is not robust. If the other document updates then all of the cross-references would need to be manually checked and updated to ensure they were still correct.
+
+\LaTeX\ has the functionality to cross-reference part of an external document by reference to a particular label, therefore the cross-reference can be automatically updated. Further, if someone manually changes the label in the other document, the \LaTeX\ compiler will record this in the compilation log allowing it to be easily checked. As an example I have created figure \ref{fig:ExampleFigure} in section~\ref{Example Subsection} of a test document~\cite{AnotherDocumentToCrossReference}. If desired, the figure can even be reproduced by reference to the figure from the other repository, as shown in figure~\ref{fig:ReproducedFigure}.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale=2.5, alt={A skewed grid broken in two with dots indicating an arbitrarily sized gap in the middle. Some cells are shaded in colour and there are labels in the centre of the cells.}]
+		\input{AnotherDocumentToCrossReference/ExampleFigure.tikz}
+	\end{tikzpicture}
+	\caption[Example figure]{The source for this figure\protect{\footnotemark} came from another repository!}
+	\label{fig:ReproducedFigure}
+\end{figure}
+\footnotetext{This also serves as an example of the figure drawing capabilities of \LaTeX.}
+
+This is all made possible through Git submodules, a tool that allows dependencies to be included into a project. It may be the case that the document being referred to is updated. This will not have any unintended side-effects however as a submodule is a link to a particular commit of the reference repository. The reference can be updated to point to a more recent commit and this change is also tracked by Git.
+
+\subsection{Bibliographies}
+\label{subsec:Bibliographies}
+
+\LaTeX\ allows great control over the bibliography section, all produced automatically and formatted to a tempalte without the user needing to track what they have referenced.

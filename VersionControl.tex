@@ -1,12 +1,6 @@
 \section{Version Control}
 \label{sec:VersionControl}
 
-% Track changes in Word can cause many revisions, for example if remove space after paragraph is applied to a table then every cell will be a revision.
-% Comparing git diff with current Word-based methods.
-% Security and how you can self-host a git server.
-% Log of changes - who made what change and when.
-% https://github.com/HenryGinn/Essays/tree/main/TheCaseForLaTeX
-
 In this section I want to compare currently used version control methods for Word documents with what is possible with \LaTeX. One of the main powers of \LaTeX\ is that it is fully compatible with text-based version control software such as Git, the free and open source software used by almost all developers and software companies. Here we will not look at all the features of Git or how it works, but trust that it is more than powerful enough for the needs of WSP.
 
 We will look at an approach to version control used on my current project and then see what is possible with a combination of \LaTeX\ and Git. There are two main types of differences that someone may care about tracking as given below.
@@ -17,6 +11,7 @@ We will look at an approach to version control used on my current project and th
 \end{itemize}
 
 \subsection{Current Practice}
+\label{subsec:CurrentPractice}
 
 On my current project we track the former type of change in a table of changes and the latter type of change with cross-through formatting and green highlighting. It may be the case that this project has a uniquely horrifying version control policy, but nonetheless it is worth highlighing the problems with it.
 
@@ -48,6 +43,7 @@ On my current project we track the former type of change in a table of changes a
 \end{figure}
 
 \subsection{Resolution with \LaTeX\ and Git}
+\label{subsec:ResolutionWithLaTeXAndGit}
 
 Before we look into how Git can avoid these issues we must first have some understanding of Git. In short, after some changes are made the author creates something called a ``commit" which is a snapshot of the project at that point in time\footnote{Git does not store only the changes and it also does not create a copy of the whole project. It works in a clever way that is beyond the scope of this essay that means the total amount of stored data is small for sensible use cases.}, and then this commit can be sent to the remote repository. An example commit is given \href{https://github.com/HenryGinn/TheCaseForLatex/commit/b12f567b9b48059ad4df2259ec68334365e4bf49}{\underline{here}} with the differences from the previous commit shown by default. \href{https://www.youtube.com/watch?v=e9lnsKot_SQ}{\underline{This video}} gives a simple explanation of the Git workflow for those wanting to know more.
 

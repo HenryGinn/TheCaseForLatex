@@ -1,0 +1,5 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'TheCaseForLatex.blg'
+[62] biber:342> INFO - === Sat Jun 13, 2026, 23:51:23
+[211] Utils.pm:479> ERROR - Cannot find 'TheCaseForLatex.bcf'!
+[212] Biber.pm:137> INFO - ERRORS: 1

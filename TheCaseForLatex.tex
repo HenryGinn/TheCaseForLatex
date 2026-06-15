@@ -1,6 +1,20 @@
-\documentclass[hidelinks, 11 pt]{article}
+% Notes of things to add:
 
-\usepackage[a4paper, top=12.7mm, bottom=25.4mm, left=19.1mm, right=19.1mm, footskip=8mm]{geometry}
+% Track changes in Word can cause many revisions, for example if remove space after paragraph is applied to a table then every cell will be a revision.
+
+
+\DocumentMetadata{
+	testphase={phase-III, math},
+	tagging=on,
+	tagging-setup={math/setup=mathml-SE},
+	pdfstandard=ua-2,
+	pdfversion=2.0,
+	lang=en
+}
+
+\documentclass[11 pt]{article}
+
+\usepackage[a4paper, top=15mm, bottom=15mm, left=20mm, right=20mm, footskip=8mm]{geometry}
 \usepackage[skip=7pt]{parskip}
 \usepackage[list=true, listformat=simple]{subcaption}
 \usepackage{graphicx}
@@ -13,7 +27,22 @@
 \usepackage{listings}
 \usepackage{lstautogobble}
 \usepackage[export]{adjustbox}
+\usepackage{xr}
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
+% Bibliography
+\usepackage[
+	backend=biber,
+	style=numeric
+]{biblatex}
+\addbibresource{bibliography.bib}
+
+% External documents that are cross-referenced
+\externaldocument{AnotherDocumentToCrossReference/AnotherDocumentToCrossReference}
+\addbibresource{AnotherDocumentToCrossReference/External.bib}
+
+% Commands for controlling vertical height of subfigures to get alignment
 \pgfplotsset{compat=1.18}
 \newsavebox{\imagebox}
 
@@ -37,35 +66,43 @@
 	tabsize=4
 }
 
-% Format links
+% Document data
+\title{The Case for \LaTeX}
+\author{Henry Ginn}
+
 \hypersetup{
-	colorlinks=false,
-	linkbordercolor=black
+	colorlinks = true, % Colours links instead of ugly boxes
+	urlcolor = blue,
+	linkcolor = blue,
+	citecolor = blue,
+	pdftitle={\texorpdfstring{\title}{The Case for LaTeX}},
+	pdfauthor={\author},
+	pdfkeywords={Typesetting, Version control},
+	pdfdisplaydoctitle=true
 }
 
 \begin{document}
 
-\begin{center}
-	\huge The Case for \LaTeX\  \\
-	\vspace{5mm}
-	\large Henry Ginn  \\
-	\vspace{3 mm}
-	\large \today
-\end{center}
+\maketitle
 
 \tableofcontents
 
 \newpage
 
 \input{Introduction.tex}
-\lstinputlisting{Introduction.tex}
-\newpage
+
+\SuspendTagging{listings}
+\lstinputlisting{Introduction.tex}\par
+\ResumeTagging{listings}\newpage
 
 \input{Formatting.tex}\newpage
 \input{TechnicalWriting.tex}\newpage
 \input{VersionControl.tex}\newpage
+\input{ManagingASuiteOfDocuments}\newpage
 \input{EaseOfUse.tex}\newpage
 \input{FailuresOfWord.tex}\newpage
 \input{Conclusion.tex}
+
+\printbibliography[heading=bibintoc]
 
 \end{document}
