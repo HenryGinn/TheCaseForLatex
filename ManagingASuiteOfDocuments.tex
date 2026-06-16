@@ -1,16 +1,12 @@
 \section{Managing a Suite of Documents}
 \label{sec:ManagingASuiteOfDocuments}
 
-\subsection{Organising Document Repositories}
-\label{subsec:OrganisingDocumentRepositories}
-
-
 \subsection{Cross-Referencing External Documents}
 \label{subsec:CrossReferencingExternalDocuments}
 
 To eliminate duplication it is convenient to reference other documents. Saying that a piece of information is somewhere in a potentially very long document is less than useful however, so we may desire to cross-reference a particular subsection or clause. The naive solution is to simply refer to the section number of interest, however this is not robust. If the other document updates then all of the cross-references would need to be manually checked and updated to ensure they were still correct.
 
-\LaTeX\ has the functionality to cross-reference part of an external document by reference to a particular label, therefore the cross-reference can be automatically updated. Further, if someone manually changes the label in the other document, the \LaTeX\ compiler will record this in the compilation log allowing it to be easily checked. As an example I have created figure \ref{fig:ExampleFigure} in section~\ref{Example Subsection} of a test document~\cite{AnotherDocumentToCrossReference}. If desired, the figure can even be reproduced by reference to the figure from the other repository, as shown in figure~\ref{fig:ReproducedFigure}.
+\LaTeX\ has the functionality to cross-reference part of an external document by reference to a particular label, therefore the cross-reference can be automatically updated. Further, if someone manually changes the label in the other document, the \LaTeX\ compiler will record this in the compilation log allowing it to be easily checked. As an example I have created figure \ref{fig:ExampleFigure} in section~\ref{subsec:ExampleSubsection} on page~\pageref{fig:ExampleFigure} of a test document~\cite{AnotherDocumentToCrossReference}. If desired, the figure can even be reproduced by reference to the figure from the other repository, as shown in figure~\ref{fig:ReproducedFigure}.
 
 \begin{figure}[H]
 	\centering
@@ -23,6 +19,11 @@ To eliminate duplication it is convenient to reference other documents. Saying t
 \footnotetext{This also serves as an example of the figure drawing capabilities of \LaTeX.}
 
 This is all made possible through Git submodules, a tool that allows dependencies to be included into a project. It may be the case that the document being referred to is updated. This will not have any unintended side-effects however as a submodule is a link to a particular commit of the reference repository. The reference can be updated to point to a more recent commit and this change is also tracked by Git.
+
+\subsection{Organising Document Repositories}
+\label{subsec:OrganisingDocumentRepositories}
+
+To be able to have a consistent look across documents, a common preamble can be defined. This can be stored in a template repository and included as a dependency via Git submodules. This means that updating to the latest template would be as simple as running a single command to update the submodule from the remote repository.
 
 \subsection{Bibliographies}
 \label{subsec:Bibliographies}

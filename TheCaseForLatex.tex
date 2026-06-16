@@ -3,39 +3,20 @@
 % Track changes in Word can cause many revisions, for example if remove space after paragraph is applied to a table then every cell will be a revision.
 
 
-\DocumentMetadata{
-	testphase={phase-III, math},
-	tagging=on,
-	tagging-setup={math/setup=mathml-SE},
-	pdfstandard=ua-2,
-	pdfversion=2.0,
-	lang=en
-}
+\input{LatexPreamble/preamble.tex}
 
-\documentclass[11 pt]{article}
-
-\usepackage[a4paper, top=15mm, bottom=15mm, left=20mm, right=20mm, footskip=8mm]{geometry}
-\usepackage[skip=7pt]{parskip}
-\usepackage[list=true, listformat=simple]{subcaption}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{fancyvrb}
-\usepackage{hyperref}
 \usepackage{pgfplots}
 \usepackage{listings}
-\usepackage{lstautogobble}
 \usepackage[export]{adjustbox}
 \usepackage{xr}
 \usepackage{tikz}
 \usetikzlibrary{calc}
 
-% Bibliography
-\usepackage[
-	backend=biber,
-	style=numeric
-]{biblatex}
 \addbibresource{bibliography.bib}
 
 % External documents that are cross-referenced
@@ -46,35 +27,11 @@
 \pgfplotsset{compat=1.18}
 \newsavebox{\imagebox}
 
-\fvset{tabsize=4} % Set tabsize in Verbatim environments
-\newcommand{\myhline}{\hline\noalign{\vskip 2pt}} % Space after hline
-\renewcommand{\arraystretch}{1.2} % Increase spacing between rows of tables
-
-% Penalties
-\interfootnotelinepenalty=10000 % Force footnotes not to split over pages
-\linepenalty=500 % Avoid runts
-\hyphenpenalty=1000 % Avoid splitting words across lines by hyphenating
-\clubpenalty=10000 % Avoid widows
-
-% Format listings environments
-\lstset{
-	basicstyle=\ttfamily,
-	columns=fullflexible,
-	keepspaces=true,
-	breaklines=true,
-	autogobble=true,
-	tabsize=4
-}
-
 % Document data
 \title{The Case for \LaTeX}
 \author{Henry Ginn}
 
 \hypersetup{
-	colorlinks = true, % Colours links instead of ugly boxes
-	urlcolor = blue,
-	linkcolor = blue,
-	citecolor = blue,
 	pdftitle={\texorpdfstring{\title}{The Case for LaTeX}},
 	pdfauthor={\author},
 	pdfkeywords={Typesetting, Version control},

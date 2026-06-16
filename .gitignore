@@ -1,3 +1,4 @@
 build
-.external
+*.bbl
+*.blg
 TheCaseForLatex.pdf

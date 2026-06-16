@@ -20,7 +20,7 @@ fi
 git fetch --tags origin
 git checkout "$tag"
 
-#lualatex -synctex=0 -interaction=nonstopmode "$tex_file"
+lualatex -synctex=0 -interaction=nonstopmode "$tex_file"
 
 year=$(git show -s --date=format:%Y --format=%cd HEAD)
 month=$(git show -s --date=format:%m --format=%cd HEAD)

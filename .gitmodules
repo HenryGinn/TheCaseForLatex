@@ -1,3 +1,6 @@
 [submodule "AnotherDocumentToCrossReference"]
 	path = AnotherDocumentToCrossReference
 	url = https://github.com/HenryGinn/AnotherDocumentToCrossReference
+[submodule "LatexPreamble"]
+	path = LatexPreamble
+	url = https://github.com/HenryGinn/LatexPreamble
