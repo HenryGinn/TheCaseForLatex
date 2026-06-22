@@ -2,8 +2,18 @@
 
 % Track changes in Word can cause many revisions, for example if remove space after paragraph is applied to a table then every cell will be a revision.
 
-
 \input{LatexPreamble/preamble.tex}
+
+% 0: Normal document
+% 1: Dark mode
+% 2: Accessibility mode:
+	% High contrast
+	% Larger text
+	% More accessible font
+	% Increased line spacing
+%\StyleNormal
+\StyleDark
+%\StyleAccessibility
 
 \usepackage{graphicx}
 \usepackage{float}
@@ -59,7 +69,5 @@
 \input{EaseOfUse.tex}\newpage
 \input{FailuresOfWord.tex}\newpage
 \input{Conclusion.tex}
-
-\printbibliography[heading=bibintoc]
 
 \end{document}

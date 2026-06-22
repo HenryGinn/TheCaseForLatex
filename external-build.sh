@@ -19,6 +19,7 @@ fi
 
 git fetch --tags origin
 git checkout "$tag"
+git submodule update --remote LatexPreamble
 
 lualatex -synctex=0 -interaction=nonstopmode "$tex_file"
 
@@ -37,11 +38,12 @@ url=$url/releases/tag/$tag
 
 cat > "$PWD/External.bib" <<EOF
 @book{$repo_dir,
-    title   = {$title},
-    year    = {$year},
-    month   = {$month},
-    edition = {$tag},
-    url     = {$url},
-    note    = {Commit: $short_commit}
+    title   	= {$title},
+    year    	= {$year},
+    month   	= {$month},
+    edition 	= {$tag},
+    url     	= {$url},
+    note    	= {Commit: $short_commit},
+    keywords	= {Internal}
 }
 EOF

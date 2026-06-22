@@ -1,4 +1,10 @@
 build
 *.bbl
 *.blg
+*.log
+*.aux
+*.toc
+*.xml
+*.html
+*.bcf
 TheCaseForLatex.pdf
